@@ -6,6 +6,7 @@ import android.widget.Toast;
 import com.ssostudio.thanksdiary.R;
 import com.ssostudio.thanksdiary.dbhelper.DBHelperManager;
 import com.ssostudio.thanksdiary.fragment.DiaryCalendarFragment;
+import com.ssostudio.thanksdiary.fragment.DiaryListFragment;
 import com.ssostudio.thanksdiary.model.DiaryListModel;
 import com.ssostudio.thanksdiary.model.DiaryModel;
 import com.ssostudio.thanksdiary.utility.AppUtility;
@@ -48,6 +49,7 @@ public class DiaryDBManager {
         _db.diaryDelete(diaryId);
         diaryModelsRefresh();
         new DiaryManager().diaryRefresh();
+        new DiaryListFragment().refreshList();
         Toast.makeText(_context, R.string.delete_completed, Toast.LENGTH_SHORT).show();
     }
 

@@ -77,19 +77,19 @@ public class DateRangeDialog implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.yesterday_button:
-                onYesterdayBtnClick();
+                onBtnClick(0);
                 break;
             case R.id.last_3_days_button:
-                onLast3BtnClick();
+                onBtnClick(1);
                 break;
             case R.id.last_7_days_button:
-                onLast7BtnClick();
+                onBtnClick(2);
                 break;
             case R.id.last_30_days_button:
-                onLast30BtnClick();
+                onBtnClick(3);
                 break;
             case R.id.all_button:
-                onAllDiaryBtnClick();
+                onBtnClick(4);
                 break;
             case R.id.select_period_button:
                 onSelectPeriodBtnClick();
@@ -100,33 +100,8 @@ public class DateRangeDialog implements View.OnClickListener {
         }
     }
 
-    private void onYesterdayBtnClick() {
-        list = new DiaryManager().getYesterdayList();
-        updateListFragment(_context.getString(R.string.yesterday));
-        _dialog.dismiss();
-    }
-
-    private void onLast3BtnClick() {
-        list = new DiaryManager().getLastDayList(3);
-        updateListFragment(_context.getString(R.string.last_3_days));
-        _dialog.dismiss();
-    }
-
-    private void onLast7BtnClick() {
-        list = new DiaryManager().getLastDayList(7);
-        updateListFragment(_context.getString(R.string.last_7_days));
-        _dialog.dismiss();
-    }
-
-    private void onLast30BtnClick() {
-        list = new DiaryManager().getLastDayList(30);
-        updateListFragment(_context.getString(R.string.last_30_days));
-        _dialog.dismiss();
-    }
-
-    private void onAllDiaryBtnClick(){
-        list = new DiaryManager().getAllDiary();
-        updateListFragment(_context.getString(R.string.all));
+    private void onBtnClick(int type){
+        new DiaryListFragment().updateList(type, null);
         _dialog.dismiss();
     }
 
@@ -146,12 +121,7 @@ public class DateRangeDialog implements View.OnClickListener {
             @Override
             public void onPositiveButtonClick(Object selection) {
                 Pair<Long, Long> range = (Pair<Long, Long>) selection;
-                startDates = DateManager.timestampToIntArray(range.first);
-                endDates = DateManager.timestampToIntArray(range.second);
-                String sStartDate = DateManager.dateTimeZoneFormat(startDates);
-                String sEndDate = DateManager.dateTimeZoneFormat(endDates);
-                list = new DiaryManager().getSelectPeriodList(startDates, endDates);
-                updateListFragment(sStartDate + " ~ " + sEndDate);
+                new DiaryListFragment().updateList(5, range);
                 _dialog.dismiss();
             }
         });
@@ -166,27 +136,22 @@ public class DateRangeDialog implements View.OnClickListener {
         picker.show(_fragmentManager, picker.toString());
     }
 
-    private void updateListFragment(String rangeDateText){
-        new DiaryListFragment().updateListView(list);
-        new DiaryListFragment().setDateText(rangeDateText);
-    }
-
-    private void dateLog(){
-            String t1 = DateManager.dateTimeZoneFormat(startDates);
-            String t2 = DateManager.dateTimeZoneFormat(endDates);
-            long ts1 = DateManager.intArrayToTimestamp(startDates);
-            long ts2 = DateManager.intArrayToTimestamp(endDates);
-            int[] st = DateManager.timestampToIntArray(ts1);
-            int[] et = DateManager.timestampToIntArray(ts2);
-            String t3 = DateManager.dateTimeZoneFormat(st);
-            String t4 = DateManager.dateTimeZoneFormat(et);
-
-        Log.d("RangeDiary" , t1
-                + " : " + t2
-                + " : " + ts1
-                + " : " + ts2
-                + " : " + t3
-                + " : " + t4
-        );
-    }
+//    private void dateLog(){
+//            String t1 = DateManager.dateTimeZoneFormat(startDates);
+//            String t2 = DateManager.dateTimeZoneFormat(endDates);
+//            long ts1 = DateManager.intArrayToTimestamp(startDates);
+//            long ts2 = DateManager.intArrayToTimestamp(endDates);
+//            int[] st = DateManager.timestampToIntArray(ts1);
+//            int[] et = DateManager.timestampToIntArray(ts2);
+//            String t3 = DateManager.dateTimeZoneFormat(st);
+//            String t4 = DateManager.dateTimeZoneFormat(et);
+//
+//        Log.d("RangeDiary" , t1
+//                + " : " + t2
+//                + " : " + ts1
+//                + " : " + ts2
+//                + " : " + t3
+//                + " : " + t4
+//        );
+//    }
 }

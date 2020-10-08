@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.core.util.Pair;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -29,6 +30,8 @@ public class DiaryListFragment extends Fragment implements View.OnClickListener 
     private View view;
     private static View staticView;
     private static Context _context;
+    private static int _type = 0;
+    private static Pair<Long, Long> _range = null;
 
     FloatingActionButton dateChangeBtn;
     private TextView dateText;
@@ -132,6 +135,53 @@ public class DiaryListFragment extends Fragment implements View.OnClickListener 
         }
 
     }
+
+    public void refreshList(){
+        updateList(_type, _range);
+    }
+
+    public void updateList(int type, Pair<Long, Long> range){
+        ArrayList<DiaryModel> list = new ArrayList<>();
+        String dateText = "";
+
+        _type = type;
+        _range = range;
+
+        switch (_type){
+            case 0:
+                list = new DiaryManager().getYesterdayList();
+                dateText = _context.getString(R.string.yesterday);
+                break;
+            case 1:
+                list = new DiaryManager().getLastDayList(3);
+                dateText = _context.getString(R.string.last_3_days);
+                break;
+            case 2:
+                list = new DiaryManager().getLastDayList(7);
+                dateText = _context.getString(R.string.last_7_days);
+                break;
+            case 3:
+                list = new DiaryManager().getLastDayList(30);
+                dateText = _context.getString(R.string.last_30_days);
+                break;
+            case 4:
+                list = new DiaryManager().getAllDiary();
+                dateText =_context.getString(R.string.all);
+                break;
+            case 5:
+                int[] startDates = DateManager.timestampToIntArray(_range.first);
+                int[] endDates = DateManager.timestampToIntArray(_range.second);
+                String sStartDate = DateManager.dateTimeZoneFormat(startDates);
+                String sEndDate = DateManager.dateTimeZoneFormat(endDates);
+                list = new DiaryManager().getSelectPeriodList(startDates, endDates);
+                dateText = sStartDate + " ~ " + sEndDate;
+                break;
+        }
+
+        updateListView(list);
+        setDateText(dateText);
+    }
+
 
     private void noResultVisible() {
         llNoResult = staticView.findViewById(R.id.ll_on_result);
