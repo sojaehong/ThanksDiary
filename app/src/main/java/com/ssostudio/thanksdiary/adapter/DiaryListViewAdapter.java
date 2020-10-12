@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.ssostudio.thanksdiary.DiaryDetailActivity;
 import com.ssostudio.thanksdiary.R;
+import com.ssostudio.thanksdiary.dialog.TextDialog;
 import com.ssostudio.thanksdiary.diary.DiaryDBManager;
 import com.ssostudio.thanksdiary.diary.DiaryManager;
 import com.ssostudio.thanksdiary.fragment.DiaryCalendarFragment;
@@ -74,7 +75,8 @@ public class DiaryListViewAdapter extends BaseAdapter {
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                _dbManager.diaryDelete(diaryModel.getDiary_id());
+//                _dbManager.diaryDelete(diaryModel.getDiary_id());
+                new TextDialog(_context).onShowDialog(0,"삭제하시겠습니까?", diaryModel.getDiary_id());
             }
         });
 

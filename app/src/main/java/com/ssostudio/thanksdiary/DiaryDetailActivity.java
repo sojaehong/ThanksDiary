@@ -21,6 +21,7 @@ import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.button.MaterialButton;
+import com.ssostudio.thanksdiary.dialog.TextDialog;
 import com.ssostudio.thanksdiary.diary.DiaryDBManager;
 import com.ssostudio.thanksdiary.model.DiaryModel;
 import com.ssostudio.thanksdiary.utility.DateManager;
@@ -120,8 +121,9 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void onDeleteBtnClick(){
-        _dbManager.diaryDelete(_diaryModel.getDiary_id());
-        finish();
+//        _dbManager.diaryDelete(_diaryModel.getDiary_id());
+        new TextDialog(this).onShowDialog(1,"삭제하시겠습니까?", _diaryModel.getDiary_id());
+//        finish();
     }
 
     private void onUpdateBtnClick(){
