@@ -34,6 +34,15 @@ public class TextDialog implements View.OnClickListener {
         _dialog.show();
     }
 
+    public void onShowDialog(int type, String text) {
+        _type = type;
+        _text = text;
+
+        dialogInit();
+
+        _dialog.show();
+    }
+
     private void dialogInit() {
         _dialog = new Dialog(_context);
 
@@ -90,6 +99,10 @@ public class TextDialog implements View.OnClickListener {
                 // 디테일 화면에서 삭제
                 new DiaryDBManager(_context).diaryDelete(_diaryId);
                 ((Activity)_context).finish();
+                break;
+            case 2:
+                // 다이어리 리셋
+                new DiaryDBManager(_context).diaryAllDelete(_context);
                 break;
         }
 

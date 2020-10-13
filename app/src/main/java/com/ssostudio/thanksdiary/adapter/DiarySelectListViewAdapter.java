@@ -93,7 +93,7 @@ public class DiarySelectListViewAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
 //                _dbManager.diaryDelete(diaryModel.getDiary_id());
-                new TextDialog(_context).onShowDialog(0,"삭제하시겠습니까?", diaryModel.getDiary_id());
+                new TextDialog(_context).onShowDialog(0,_context.getString(R.string.delete_q), diaryModel.getDiary_id());
             }
         });
 

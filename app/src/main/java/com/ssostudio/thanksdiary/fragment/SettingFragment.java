@@ -12,6 +12,7 @@ import com.google.android.material.button.MaterialButton;
 import com.ssostudio.thanksdiary.ImportExportActivity;
 import com.ssostudio.thanksdiary.PremiumUpgradeActivity;
 import com.ssostudio.thanksdiary.R;
+import com.ssostudio.thanksdiary.dialog.TextDialog;
 import com.ssostudio.thanksdiary.diary.DiaryDBManager;
 import com.ssostudio.thanksdiary.utility.AppReview;
 import com.ssostudio.thanksdiary.utility.OtherApps;
@@ -103,7 +104,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     }
 
     private void onDiaryResetBtnClick() {
-        _dbManager.diaryAllDelete(getContext());
+        new TextDialog(getContext()).onShowDialog(2, getContext().getString(R.string.reset_q));
     }
 
     private void onUpgradeBtnClick() {
