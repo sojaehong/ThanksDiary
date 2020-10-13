@@ -30,7 +30,7 @@
     <string name="why">왜 감사하셨나요?</string>
     <string name="ok">확인</string>
     <string name="no_diary_write">작성된 일기가 없습니다.</string>
-    <string name="completed">작성 완료</string>
+    <string name="completed">완료</string>
     <string name="total">총</string>
     <string name="date_of_use">사용일</string>
     <string name="daily_average">하루 평균</string>
@@ -57,4 +57,6 @@
     <string name="delete_completed">삭제 완료</string>
     <string name="delete_q">삭제하시겠습니까?</string>
     <string name="reset_q">다이어리를 리셋하시겠습니까?</string>
+    <string name="update">수정</string>
+    <string name="delete">삭제</string>
 </resources>

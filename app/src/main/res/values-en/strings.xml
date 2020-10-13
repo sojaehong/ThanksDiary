@@ -57,4 +57,6 @@
     <string name="delete_completed">Delete completed</string>
     <string name="delete_q">Do you want to delete it?</string>
     <string name="reset_q">Do you want to reset the diary?</string>
+    <string name="update">update</string>
+    <string name="delete">delete</string>
 </resources>

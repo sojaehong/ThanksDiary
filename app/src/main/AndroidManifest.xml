@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ImportExportActivity"></activity>
+        <activity android:name=".DiaryUpdateActivity"></activity>
+        <activity android:name=".ImportExportActivity" />
         <activity android:name=".PremiumUpgradeActivity" />
         <activity android:name=".DiaryDetailActivity" />
 

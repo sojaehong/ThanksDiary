@@ -121,13 +121,13 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void onDeleteBtnClick(){
-//        _dbManager.diaryDelete(_diaryModel.getDiary_id());
-        new TextDialog(this).onShowDialog(1,"삭제하시겠습니까?", _diaryModel.getDiary_id());
-//        finish();
+        new TextDialog(this).onShowDialog(1,getApplicationContext().getString(R.string.delete_q), _diaryModel.getDiary_id());
     }
 
     private void onUpdateBtnClick(){
-
+        Intent intent = new Intent(getApplicationContext(), DiaryUpdateActivity.class);
+        intent.putExtra("diaryModel",_diaryModel);
+        startActivity(intent);
     }
 
     private void onBackBtnClick(){

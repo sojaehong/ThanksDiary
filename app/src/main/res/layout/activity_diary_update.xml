@@ -4,14 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".DiaryDetailActivity">
+    tools:context=".DiaryUpdateActivity">
 
     <ScrollView
-        android:id="@+id/sv_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignBottom="@+id/ll_bottom"
         android:layout_marginBottom="?actionBarSize">
 
         <LinearLayout
@@ -33,7 +30,6 @@
                     android:textSize="25dp" />
 
             </LinearLayout>
-
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -93,7 +89,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/detail_why_a_text"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -106,7 +102,6 @@
     </ScrollView>
 
     <LinearLayout
-        android:id="@+id/ll_bottom"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:layout_alignParentBottom="true"
@@ -121,28 +116,13 @@
             android:text="@string/back" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/delete_button"
+            android:id="@+id/completed_button"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/delete" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/update_button"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/update" />
+            android:text="@string/completed" />
 
     </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/adFrame"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:gravity="bottom" />
 
 </RelativeLayout>
