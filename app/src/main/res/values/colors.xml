@@ -26,4 +26,7 @@
     <color name="flameScarlet">#D91430</color>
     <color name="classicBlue">#0F4C81</color>
     <color name="classicRed">#E32929</color>
+
+    <color name="updateBtnBack">#4D000000</color>
+    <color name="updateText">#66FF0000</color>
 </resources>
