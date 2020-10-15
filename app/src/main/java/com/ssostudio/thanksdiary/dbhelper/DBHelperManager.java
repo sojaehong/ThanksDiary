@@ -88,9 +88,9 @@ public class DBHelperManager extends SQLiteOpenHelper {
         }
     }
 
-    public void onDiaryUpdate(DiaryModel diaryModel){
+    public void onDiaryUpdate(DiaryModel diaryModel) {
 
-        try{
+        try {
             _db = getWritableDatabase();
 
             String sql = "UPDATE diary SET diary_year = ?, diary_month = ?, diary_day = ?, diary_target = ?, diary_content = ? WHERE diary_id = ?";
@@ -107,7 +107,7 @@ public class DBHelperManager extends SQLiteOpenHelper {
 
             _statement.close();
             _db.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -167,9 +167,9 @@ public class DBHelperManager extends SQLiteOpenHelper {
 
     }
 
-    public void diaryDelete(int diaryId){
+    public void diaryDelete(int diaryId) {
 
-        try{
+        try {
 
             _db = getWritableDatabase();
 
@@ -224,8 +224,11 @@ public class DBHelperManager extends SQLiteOpenHelper {
             if (sd.canWrite()) {
                 File currentDB = new File(data, "");
 
+                backupFoldermk();
+
                 FileChannel src = new FileInputStream(currentDB).getChannel();
                 FileChannel dst = new FileOutputStream(BACKUP_PATH + BACKUP_NAME).getChannel();
+
                 dst.transferFrom(src, 0, src.size());
                 src.close();
                 dst.close();
@@ -240,6 +243,13 @@ public class DBHelperManager extends SQLiteOpenHelper {
             return false;
         }
         return false;
+    }
+
+    private static void backupFoldermk() {
+        File dir = new File(BACKUP_PATH);
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
     }
 
 }
