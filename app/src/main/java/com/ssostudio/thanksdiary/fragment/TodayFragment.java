@@ -76,7 +76,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
     }
 
     private void onWriteBtnClick() {
-        new DateSelectDialog(getContext()).onShowDialog();
+        new DateSelectDialog(getContext()).onShowDialog(0);
     }
 
     public static void onSnackbarMake(int stringId) {

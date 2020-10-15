@@ -18,18 +18,52 @@ public class TargetSelectDialog implements View.OnClickListener {
     private Context _context;
     private Dialog _dialog;
     private DiaryModel _diaryModel;
+    private int _type;
     public TargetGridViewAdapter adapter;
     private static Dialog _dialogStatic;
+    private MaterialButton backBtn, cancelBtn;
+    private TextView textView;
 
     public TargetSelectDialog(Context context, DiaryModel diaryModel){
         _context = context;
         _diaryModel = diaryModel;
     }
 
-    public void onShowDialog(){
+    public void onShowDialog(int type){
+        _type = type;
+
+        if (_type == 0){
+            setWriteDialog();
+        }else if(_type == 1){
+            setUpdateDialog();
+        }
+
+    }
+
+    private void setWriteDialog(){
+        dialogInit();
+        setCancelBtn();
+        setBackBtn();
+        setDateText();
+    }
+
+    private void setUpdateDialog(){
+        dialogInit();
+        setCancelBtn();
+
+        textView = _dialog.findViewById(R.id.date_text);
+        textView.setVisibility(View.GONE);
+
+        backBtn = _dialog.findViewById(R.id.back_button);
+        backBtn.setVisibility(View.GONE);
+
+    }
+
+    private void dialogInit(){
+
         _dialog = new Dialog(_context);
 
-        adapter = new TargetGridViewAdapter(_context, _diaryModel);
+        adapter = new TargetGridViewAdapter(_context, _diaryModel, _type);
 
         _dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         _dialog.setContentView(R.layout.target_select_dialog);
@@ -48,21 +82,26 @@ public class TargetSelectDialog implements View.OnClickListener {
         Window window = _dialog.getWindow();
         window.setAttributes(layoutParams);
 
-        MaterialButton cancelBtn = _dialog.findViewById(R.id.cancel_button);
+    }
+
+    private void setCancelBtn(){
+        cancelBtn = _dialog.findViewById(R.id.cancel_button);
         cancelBtn.setOnClickListener(this);
+    }
 
-        MaterialButton backBtn = _dialog.findViewById(R.id.back_button);
+    private void setBackBtn(){
+        backBtn = _dialog.findViewById(R.id.back_button);
         backBtn.setOnClickListener(this);
+    }
 
+    private void setDateText(){
         int[] date = {_diaryModel.getDiary_year(), _diaryModel.getDiary_month(), _diaryModel.getDiary_day()};
 
         String dateString = DateManager.dateTimeZoneFormat(date);
 
         TextView textView = _dialog.findViewById(R.id.date_text);
         textView.setText(dateString);
-
     }
-
 
     @Override
     public void onClick(View view) {
@@ -71,10 +110,14 @@ public class TargetSelectDialog implements View.OnClickListener {
                 onDialogDismiss();
                 break;
             case R.id.back_button:
-                new DateSelectDialog(_context).onShowDialog();
-                onDialogDismiss();
+                onBackBtnClick();
                 break;
         }
+    }
+
+    private void onBackBtnClick(){
+        new DateSelectDialog(_context).onShowDialog(0);
+        onDialogDismiss();
     }
 
     private void onDialogDismiss(){

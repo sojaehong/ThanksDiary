@@ -78,7 +78,7 @@ public class ContentWriteDialog implements View.OnClickListener {
                 onDialogDismiss();
                 break;
             case R.id.back_button:
-                new TargetSelectDialog(_context, _diaryModel).onShowDialog();
+                new TargetSelectDialog(_context, _diaryModel).onShowDialog(0);
                 onDialogDismiss();
                 break;
             case R.id.ok_button:

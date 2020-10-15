@@ -8,6 +8,7 @@ import android.view.WindowManager;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.ssostudio.thanksdiary.DiaryUpdateActivity;
 import com.ssostudio.thanksdiary.R;
 import com.ssostudio.thanksdiary.fragment.TodayFragment;
 import com.ssostudio.thanksdiary.model.DiaryModel;
@@ -18,28 +19,47 @@ public class EtcWriteDialog implements View.OnClickListener {
     private DiaryModel _diaryModel;
     private Dialog _dialog;
     private TextInputEditText text;
+    private MaterialButton cancelBtn, backBtn, nextBtn;
+    private int _type;
 
     public EtcWriteDialog(Context context, DiaryModel diaryModel){
         _context = context;
         _diaryModel = diaryModel;
     }
 
-    public void onShowDialog(){
+    public void onShowDialog(int type){
+        _type = type;
+
+        if (_type == 0){
+            setWriteDialog();
+        }else if (_type == 1){
+            setUpdateDialog();
+        }
+
+    }
+
+    private void setWriteDialog(){
+        dialogInit();
+        setCancelBtn();
+        setBackBtn();
+        setNextBtn();
+        setText();
+    }
+
+    private void setUpdateDialog(){
+        dialogInit();
+        setCancelBtn();
+        setBackBtn();
+        setNextBtn();
+        nextBtn.setText(_context.getString(R.string.ok));
+        setText();
+    }
+
+    private void dialogInit(){
         _dialog = new Dialog(_context);
 
         _dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         _dialog.setContentView(R.layout.etc_write_dialog);
-
-        MaterialButton cancelBtn = _dialog.findViewById(R.id.cancel_button);
-        cancelBtn.setOnClickListener(this);
-
-        MaterialButton backBtn = _dialog.findViewById(R.id.back_button);
-        backBtn.setOnClickListener(this);
-
-        MaterialButton nextBtn = _dialog.findViewById(R.id.next_button);
-        nextBtn.setOnClickListener(this);
-
-        text = _dialog.findViewById(R.id.target_text);
 
         _dialog.show();
 
@@ -51,6 +71,25 @@ public class EtcWriteDialog implements View.OnClickListener {
         window.setAttributes(layoutParams);
     }
 
+    private void setCancelBtn(){
+        cancelBtn = _dialog.findViewById(R.id.cancel_button);
+        cancelBtn.setOnClickListener(this);
+    }
+
+    private void setBackBtn(){
+        backBtn = _dialog.findViewById(R.id.back_button);
+        backBtn.setOnClickListener(this);
+    }
+
+    private void setNextBtn(){
+        nextBtn = _dialog.findViewById(R.id.next_button);
+        nextBtn.setOnClickListener(this);
+    }
+
+    private void setText(){
+        text = _dialog.findViewById(R.id.target_text);
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -58,7 +97,7 @@ public class EtcWriteDialog implements View.OnClickListener {
                 onDialogDismiss();
                 break;
             case R.id.back_button:
-                new TargetSelectDialog(_context, _diaryModel).onShowDialog();
+                new TargetSelectDialog(_context, _diaryModel).onShowDialog(_type);
                 onDialogDismiss();
                 break;
             case R.id.next_button:
@@ -78,8 +117,14 @@ public class EtcWriteDialog implements View.OnClickListener {
         if (target.trim().equals("")){
             TodayFragment.onSnackbarMake(R.string.input_text_p);
         }else{
-            _diaryModel.setDiary_target(target);
-            new ContentWriteDialog(_context, _diaryModel).onShowDialog();
+
+            if (_type == 0){
+                _diaryModel.setDiary_target(target);
+                new ContentWriteDialog(_context, _diaryModel).onShowDialog();
+            }else if (_type == 1){
+                ((DiaryUpdateActivity)_context).updateTarget(target);
+            }
+
             _dialog.dismiss();
         }
     }

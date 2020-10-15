@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.google.android.material.button.MaterialButton;
+import com.ssostudio.thanksdiary.DiaryUpdateActivity;
 import com.ssostudio.thanksdiary.R;
 import com.ssostudio.thanksdiary.dialog.ContentWriteDialog;
 import com.ssostudio.thanksdiary.dialog.EtcWriteDialog;
@@ -18,15 +19,17 @@ public class TargetGridViewAdapter extends BaseAdapter {
     private Context _context;
     private LayoutInflater inflater;
     private DiaryModel _diaryModel;
+    private int _type;
 
     private int[] target = {R.string.me, R.string.family, R.string.friend,
      R.string.work, R.string.food, R.string.nature, R.string.pet, R.string.etc
     };
 
-    public TargetGridViewAdapter(Context context, DiaryModel diaryModel){
+    public TargetGridViewAdapter(Context context, DiaryModel diaryModel, int type){
         _context = context;
         inflater = (LayoutInflater) _context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         _diaryModel = diaryModel;
+        _type = type;
     }
 
     @Override
@@ -56,13 +59,17 @@ public class TargetGridViewAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 if (target[i] == R.string.etc){
-                    TargetSelectDialog.onStaticDialogDismiss();
-                    new EtcWriteDialog(_context, _diaryModel).onShowDialog();
+                    new EtcWriteDialog(_context, _diaryModel).onShowDialog(_type);
                 }else{
-                    _diaryModel.setDiary_target(_context.getResources().getString(target[i]));
-                    TargetSelectDialog.onStaticDialogDismiss();
-                    new ContentWriteDialog(_context, _diaryModel).onShowDialog();
+                    if (_type == 0){
+                        _diaryModel.setDiary_target(_context.getResources().getString(target[i]));
+                        new ContentWriteDialog(_context, _diaryModel).onShowDialog();
+                    }else if(_type == 1){
+                        ((DiaryUpdateActivity)_context).updateTarget(_context.getResources().getString(target[i]));
+                    }
                 }
+
+                TargetSelectDialog.onStaticDialogDismiss();
             }
         });
 

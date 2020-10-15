@@ -1,5 +1,6 @@
 package com.ssostudio.thanksdiary;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -31,6 +32,7 @@ import java.util.Arrays;
 public class DiaryDetailActivity extends AppCompatActivity implements View.OnClickListener {
     private DiaryModel _diaryModel;
     private DiaryDBManager _dbManager;
+    public static Activity _activity;
 
     private AppCompatTextView dateText, targetText, whyText;
     private MaterialButton deleteBtn, updateBtn, backBtn;
@@ -43,10 +45,11 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_diary_detail);
 
         init();
-
     }
 
     private void init(){
+        _activity = this;
+
         _dbManager = new DiaryDBManager(getApplicationContext());
 
         getIntentData();
@@ -101,6 +104,16 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
     private void setBackBtn(){
         backBtn = findViewById(R.id.back_button);
         backBtn.setOnClickListener(this);
+    }
+
+    public void updateDiaryDiteil(DiaryModel diaryModel){
+        if (_diaryModel == null)
+            return;
+
+        _diaryModel = diaryModel;
+        setDateText();
+        setTargetText();
+        setWhyText();
     }
 
     @Override

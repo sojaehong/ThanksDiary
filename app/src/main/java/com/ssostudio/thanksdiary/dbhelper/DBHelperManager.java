@@ -88,6 +88,31 @@ public class DBHelperManager extends SQLiteOpenHelper {
         }
     }
 
+    public void onDiaryUpdate(DiaryModel diaryModel){
+
+        try{
+            _db = getWritableDatabase();
+
+            String sql = "UPDATE diary SET diary_year = ?, diary_month = ?, diary_day = ?, diary_target = ?, diary_content = ? WHERE diary_id = ?";
+            _statement = _db.compileStatement(sql);
+
+            _statement.bindLong(1, diaryModel.getDiary_year());
+            _statement.bindLong(2, diaryModel.getDiary_month());
+            _statement.bindLong(3, diaryModel.getDiary_day());
+            _statement.bindString(4, diaryModel.getDiary_target());
+            _statement.bindString(5, diaryModel.getDiary_content());
+            _statement.bindLong(6, diaryModel.getDiary_id());
+
+            _statement.execute();
+
+            _statement.close();
+            _db.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
     public ArrayList<DiaryModel> getAllDiarySelect() {
 
         diaryModels = new ArrayList<>();

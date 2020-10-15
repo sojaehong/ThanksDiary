@@ -3,6 +3,7 @@ package com.ssostudio.thanksdiary.diary;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.ssostudio.thanksdiary.DiaryDetailActivity;
 import com.ssostudio.thanksdiary.R;
 import com.ssostudio.thanksdiary.dbhelper.DBHelperManager;
 import com.ssostudio.thanksdiary.fragment.DiaryCalendarFragment;
@@ -18,12 +19,12 @@ public class DiaryDBManager {
     private DBHelperManager _db;
     private Context _context;
 
-    public DiaryDBManager(Context context){
+    public DiaryDBManager(Context context) {
         _context = context;
         _db = new DBHelperManager(context);
     }
 
-    public void onDiaryWrite(DiaryModel diaryModel){
+    public void onDiaryWrite(DiaryModel diaryModel) {
 
         String timestamp = "" + DateManager.getTimestamp();
         diaryModel.setDiary_timestamp(timestamp);
@@ -32,25 +33,47 @@ public class DiaryDBManager {
         _db.onDiaryWrite(diaryModel);
     }
 
-    public ArrayList<DiaryModel> getDiaryAllSelect(){
+    public ArrayList<DiaryModel> getDiaryAllSelect() {
         return _db.getAllDiarySelect();
     }
 
-    public void diaryModelsRefresh(){
+    public void diaryModelsRefresh() {
         DiaryListModel.diaryModels = getDiaryAllSelect();
     }
 
-    public void diaryAllDelete(Context context){
-        _db.diaryAllDelete();
-        AppUtility.restartApp(context);
+    public void diaryAllDelete(Context context) {
+        try{
+            _db.diaryAllDelete();
+            AppUtility.restartApp(context);
+        }catch (Exception e){
+            Toast.makeText(_context, "reset error", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    public void diaryDelete(int diaryId){
-        _db.diaryDelete(diaryId);
-        diaryModelsRefresh();
-        new DiaryManager().diaryRefresh();
-        new DiaryListFragment().refreshList();
-        Toast.makeText(_context, R.string.delete_completed, Toast.LENGTH_SHORT).show();
+    public void diaryDelete(int diaryId) {
+        try {
+            _db.diaryDelete(diaryId);
+            diaryModelsRefresh();
+            new DiaryManager().diaryRefresh();
+            new DiaryListFragment().refreshList();
+            Toast.makeText(_context, R.string.delete_completed, Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(_context, "delete error", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    public void diaryUpdate(DiaryModel diaryModel) {
+        try {
+            _db.onDiaryUpdate(diaryModel);
+            diaryModelsRefresh();
+            new DiaryManager().diaryRefresh();
+            new DiaryListFragment().refreshList();
+            ((DiaryDetailActivity) DiaryDetailActivity._activity).updateDiaryDiteil(diaryModel);
+            Toast.makeText(_context, R.string.update_completed, Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(_context, "update error", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }
