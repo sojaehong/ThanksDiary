@@ -18,7 +18,7 @@
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="프리미엄 기능을 제공합니다."
+                android:text="@string/premium_upgrade_m_0"
                 android:textSize="18dp"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -28,7 +28,27 @@
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="- 광고 제거"
+                android:text="@string/premium_upgrade_m_1"
+                android:textSize="14dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_margin="5dp"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/premium_upgrade_m_2"
+                android:textSize="14dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_margin="5dp"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/premium_upgrade_m_3"
                 android:textSize="14dp"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -43,7 +63,7 @@
                 android:layout_margin="10dp"
                 android:backgroundTint="@color/gold"
                 android:padding="10dp"
-                android:text="프리미엄 업그레이드"
+                android:text="@string/premium_upgrade_btn"
                 android:textSize="20dp" />
 
         </LinearLayout>

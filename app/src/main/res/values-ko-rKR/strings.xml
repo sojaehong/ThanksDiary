@@ -61,4 +61,13 @@
     <string name="delete">삭제</string>
     <string name="update_q">일기를 수정하시겠습니까?</string>
     <string name="update_completed">수정 완료</string>
+    <string name="premium_upgrade_m_0">프리미엄 기능을 제공합니다.</string>
+    <string name="premium_upgrade_m_1">- 광고 제거</string>
+    <string name="premium_upgrade_m_2">- 무료 프리미엄 업그레이드</string>
+    <string name="premium_upgrade_m_3">- 평생 프리미엄 업그레이드</string>
+    <string name="premium_upgrade_btn">프리미엄 업그레이드</string>
+    <string name="premium_restoration_btn">구매 복원</string>
+    <string name="premium_free_btn">3일 무료</string>
+    <string name="backup_btn">백업</string>
+    <string name="recovery_btn">복구</string>
 </resources>

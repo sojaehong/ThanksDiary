@@ -35,14 +35,14 @@
     <string name="date_of_use">Date of use</string>
     <string name="daily_average">daily average</string>
     <string name="date_range">SELECT A DATE RANGE</string>
-    <string name="yesterday">yesterday</string>
+    <string name="yesterday">Yesterday</string>
     <string name="this_week">This week</string>
     <string name="this_month">This month</string>
     <string name="select_period">Select period</string>
     <string name="last_3_days">Last 3 days</string>
     <string name="last_7_days">Last 7 days</string>
     <string name="last_30_days">Last 30 days</string>
-    <string name="write">write</string>
+    <string name="write">Write</string>
     <string name="all">All</string>
     <string name="backup_ok">Backup successful</string>
     <string name="backup_failed">Backup failed</string>
@@ -61,4 +61,13 @@
     <string name="delete">delete</string>
     <string name="update_q">Would you like to edit your diary?</string>
     <string name="update_completed">Update completed</string>
+    <string name="premium_upgrade_m_0">Provides premium features.</string>
+    <string name="premium_upgrade_m_1">- Remove ads</string>
+    <string name="premium_upgrade_m_2">- Free premium upgrade</string>
+    <string name="premium_upgrade_m_3">- Lifetime premium upgrade</string>
+    <string name="premium_upgrade_btn">Premium upgrade</string>
+    <string name="premium_restoration_btn">Purchase restoration</string>
+    <string name="premium_free_btn">3 days free</string>
+    <string name="backup_btn">backup</string>
+    <string name="recovery_btn">recovery</string>
 </resources>

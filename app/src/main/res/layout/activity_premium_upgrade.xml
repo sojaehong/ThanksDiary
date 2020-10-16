@@ -33,7 +33,7 @@
                         android:layout_margin="10dp"
                         android:backgroundTint="@color/gold"
                         android:padding="10dp"
-                        android:text="프리미엄 업그레이드"
+                        android:text="@string/premium_upgrade_btn"
                         android:textSize="20dp" />
 
                 </LinearLayout>
@@ -58,7 +58,7 @@
                         android:layout_margin="10dp"
                         android:backgroundTint="@color/gold"
                         android:padding="10dp"
-                        android:text="구매 복원"
+                        android:text="@string/premium_restoration_btn"
                         android:textSize="20dp" />
 
                 </LinearLayout>
@@ -83,7 +83,7 @@
                         android:layout_margin="10dp"
                         android:backgroundTint="@color/gold"
                         android:padding="10dp"
-                        android:text="3일 무료"
+                        android:text="@string/premium_free_btn"
                         android:textSize="20dp" />
 
                 </LinearLayout>
