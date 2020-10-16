@@ -11,6 +11,7 @@
         android:orientation="vertical">
 
         <include layout="@layout/upgrade_item" />
+        <include layout="@layout/premium_user_item"/>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -56,25 +57,25 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/review_button"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:padding="10dp"
-                    android:text="@string/app_review"
-                    android:textSize="20dp" />
+<!--                <com.google.android.material.button.MaterialButton-->
+<!--                    android:id="@+id/review_button"-->
+<!--                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_margin="10dp"-->
+<!--                    android:padding="10dp"-->
+<!--                    android:text="@string/app_review"-->
+<!--                    android:textSize="20dp" />-->
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/share_button"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:padding="10dp"
-                    android:text="@string/app_recommend"
-                    android:textSize="20dp" />
+<!--                <com.google.android.material.button.MaterialButton-->
+<!--                    android:id="@+id/share_button"-->
+<!--                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_margin="10dp"-->
+<!--                    android:padding="10dp"-->
+<!--                    android:text="@string/app_recommend"-->
+<!--                    android:textSize="20dp" />-->
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/other_app_button"

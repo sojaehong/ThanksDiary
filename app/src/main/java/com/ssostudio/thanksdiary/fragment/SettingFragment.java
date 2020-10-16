@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.button.MaterialButton;
 import com.ssostudio.thanksdiary.ImportExportActivity;
+import com.ssostudio.thanksdiary.MainActivity;
 import com.ssostudio.thanksdiary.PremiumUpgradeActivity;
 import com.ssostudio.thanksdiary.R;
 import com.ssostudio.thanksdiary.dialog.TextDialog;
@@ -24,7 +26,8 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     private MaterialButton upgradeBtn;
     private MaterialButton reviewBtn, shareBtn, otherAppsBtn, diaryRestBtn;
     private MaterialButton IEBtn;
-    private DiaryDBManager _dbManager;
+    private LinearLayout upgradeLayout, premiumUserLayout;
+//    private DiaryDBManager _dbManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,7 +36,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
 
         staticView = view;
 
-        _dbManager = new DiaryDBManager(getContext());
+//        _dbManager = new DiaryDBManager(getContext());
 
         init();
 
@@ -42,11 +45,27 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
 
     private void init() {
         setUpgradeBtn();
+        setUpgradeUIVisible();
         setIEBtn();
-        setReviewBtn();
-        setShareBtn();
+//        setReviewBtn();
+//        setShareBtn();
         setOtherAppsBtn();
         setDiaryResetBtn();
+    }
+
+    private void setUpgradeUIVisible() {
+        upgradeLayout = staticView.findViewById(R.id.upgrade_ll);
+        premiumUserLayout = staticView.findViewById(R.id.premium_user_ll);
+
+        boolean isPremium = MainActivity.isPremium;
+        boolean isFree = MainActivity.isFree;
+
+        if (isPremium || isFree){
+            upgradeLayout.setVisibility(View.GONE);
+        }else {
+            premiumUserLayout.setVisibility(View.GONE);
+        }
+
     }
 
     private void setIEBtn() {
@@ -59,15 +78,15 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
         upgradeBtn.setOnClickListener(this);
     }
 
-    private void setReviewBtn() {
-        reviewBtn = staticView.findViewById(R.id.review_button);
-        reviewBtn.setOnClickListener(this);
-    }
-
-    private void setShareBtn() {
-        shareBtn = staticView.findViewById(R.id.share_button);
-        shareBtn.setOnClickListener(this);
-    }
+//    private void setReviewBtn() {
+//        reviewBtn = staticView.findViewById(R.id.review_button);
+//        reviewBtn.setOnClickListener(this);
+//    }
+//
+//    private void setShareBtn() {
+//        shareBtn = staticView.findViewById(R.id.share_button);
+//        shareBtn.setOnClickListener(this);
+//    }
 
     private void setOtherAppsBtn() {
         otherAppsBtn = staticView.findViewById(R.id.other_app_button);
@@ -85,12 +104,12 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
             case R.id.upgrade_button:
                 onUpgradeBtnClick();
                 break;
-            case R.id.review_button:
-                onReviewBtnClick();
-                break;
-            case R.id.share_button:
-                onShareBtnClick();
-                break;
+//            case R.id.review_button:
+//                onReviewBtnClick();
+//                break;
+//            case R.id.share_button:
+//                onShareBtnClick();
+//                break;
             case R.id.other_app_button:
                 onOtherAppsBtnClick();
                 break;
