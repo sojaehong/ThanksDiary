@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
         adContainerView = findViewById(R.id.adFrame);
 
         mAdView = new AdView(this);
-        mAdView.setAdUnitId(getString(R.string.banner_ad_unit_id_test));
+        mAdView.setAdUnitId(getString(R.string.banner_ad_unit_id_main));
         adContainerView.addView(mAdView);
 
         // Ad Test Device setting
