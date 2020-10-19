@@ -47,8 +47,8 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
         setUpgradeBtn();
         setUpgradeUIVisible();
         setIEBtn();
-//        setReviewBtn();
-//        setShareBtn();
+        setReviewBtn();
+        setShareBtn();
         setOtherAppsBtn();
         setDiaryResetBtn();
     }
@@ -78,15 +78,15 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
         upgradeBtn.setOnClickListener(this);
     }
 
-//    private void setReviewBtn() {
-//        reviewBtn = staticView.findViewById(R.id.review_button);
-//        reviewBtn.setOnClickListener(this);
-//    }
-//
-//    private void setShareBtn() {
-//        shareBtn = staticView.findViewById(R.id.share_button);
-//        shareBtn.setOnClickListener(this);
-//    }
+    private void setReviewBtn() {
+        reviewBtn = staticView.findViewById(R.id.review_button);
+        reviewBtn.setOnClickListener(this);
+    }
+
+    private void setShareBtn() {
+        shareBtn = staticView.findViewById(R.id.share_button);
+        shareBtn.setOnClickListener(this);
+    }
 
     private void setOtherAppsBtn() {
         otherAppsBtn = staticView.findViewById(R.id.other_app_button);
@@ -104,12 +104,12 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
             case R.id.upgrade_button:
                 onUpgradeBtnClick();
                 break;
-//            case R.id.review_button:
-//                onReviewBtnClick();
-//                break;
-//            case R.id.share_button:
-//                onShareBtnClick();
-//                break;
+            case R.id.review_button:
+                onReviewBtnClick();
+                break;
+            case R.id.share_button:
+                onShareBtnClick();
+                break;
             case R.id.other_app_button:
                 onOtherAppsBtnClick();
                 break;

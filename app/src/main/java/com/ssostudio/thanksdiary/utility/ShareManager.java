@@ -17,7 +17,7 @@ public class ShareManager {
     }
 
     public static void appShare(Context context){
-        String uri = "https://play.google.com/store/apps/details?id=com.jaehong.kcci.memorydiary";
+        String uri = "https://play.google.com/store/apps/details?id=com.ssostudio.thanksdiary";
 
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
