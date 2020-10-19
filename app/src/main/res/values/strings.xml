@@ -71,4 +71,6 @@
     <string name="premium_free_btn">3 days free</string>
     <string name="backup_btn">backup</string>
     <string name="recovery_btn">recovery</string>
+    <string name="backup_q">Do you want to backup?</string>
+    <string name="recovery_q">Do you want to recover?</string>
 </resources>

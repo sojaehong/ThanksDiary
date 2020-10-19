@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.view.View;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ssostudio.thanksdiary.dbhelper.DBHelperManager;
+import com.ssostudio.thanksdiary.dialog.TextDialog;
 import com.ssostudio.thanksdiary.utility.AppUtility;
 import com.ssostudio.thanksdiary.utility.PermissionUtility;
 
@@ -68,15 +70,13 @@ public class ImportExportActivity extends AppCompatActivity implements View.OnCl
 
     private void onBackupBtnClick(){
         if (PermissionUtility.storagePermissionCheck(this, 100)){
-            DBHelperManager.exportDB(this);
+            new TextDialog(this).onShowDialog(4, getString(R.string.backup_q));
         }
     }
 
     private void onRestoreBtnClick(){
         if (PermissionUtility.storagePermissionCheck(this, 101)){
-            if (DBHelperManager.importDB(this)){
-                AppUtility.restartApp(this);
-            }
+            new TextDialog(this).onShowDialog(5, getString(R.string.recovery_q));
         }
     }
 
@@ -86,14 +86,22 @@ public class ImportExportActivity extends AppCompatActivity implements View.OnCl
 
         switch (requestCode){
             case 100:
-                DBHelperManager.exportDB(this);
+                new TextDialog(this).onShowDialog(4, getString(R.string.backup_q));
                 break;
             case 101:
-                if (DBHelperManager.importDB(this)){
-                    AppUtility.restartApp(this);
-                }
+                new TextDialog(this).onShowDialog(5, getString(R.string.recovery_q));
                 break;
         }
 
+    }
+
+    public void onBackup(Activity activity){
+        DBHelperManager.exportDB(activity);
+    }
+
+    public void onRecovery(Activity activity){
+        if (DBHelperManager.importDB(activity)){
+            AppUtility.restartApp(activity);
+        }
     }
 }

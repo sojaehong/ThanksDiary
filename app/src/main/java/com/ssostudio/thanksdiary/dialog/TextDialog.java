@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
+import com.ssostudio.thanksdiary.ImportExportActivity;
 import com.ssostudio.thanksdiary.R;
 import com.ssostudio.thanksdiary.diary.DiaryDBManager;
 import com.ssostudio.thanksdiary.model.DiaryModel;
@@ -34,12 +35,12 @@ public class TextDialog implements View.OnClickListener {
         setDialog(type, text);
     }
 
-    public void onShowDialog(int type, String text, DiaryModel diaryModel){
+    public void onShowDialog(int type, String text, DiaryModel diaryModel) {
         _diaryModel = diaryModel;
         setDialog(type, text);
     }
 
-    private void setDialog(int type, String text){
+    private void setDialog(int type, String text) {
         _type = type;
         _text = text;
 
@@ -93,9 +94,9 @@ public class TextDialog implements View.OnClickListener {
         }
     }
 
-    private void onOkButtonClick(){
+    private void onOkButtonClick() {
 
-        switch (_type){
+        switch (_type) {
             case 0:
                 // 일기 삭제
                 new DiaryDBManager(_context).diaryDelete(_diaryId);
@@ -103,7 +104,7 @@ public class TextDialog implements View.OnClickListener {
             case 1:
                 // 디테일 화면에서 삭제
                 new DiaryDBManager(_context).diaryDelete(_diaryId);
-                ((Activity)_context).finish();
+                ((Activity) _context).finish();
                 break;
             case 2:
                 // 다이어리 리셋
@@ -112,14 +113,22 @@ public class TextDialog implements View.OnClickListener {
             case 3:
                 // 다이어리 수정
                 new DiaryDBManager(_context).diaryUpdate(_diaryModel);
-                ((Activity)_context).finish();
+                ((Activity) _context).finish();
+                break;
+            case 4:
+                // 다이어리 백업
+                new ImportExportActivity().onBackup((Activity) _context);
+                break;
+            case 5:
+                //다이어리 복구
+                new ImportExportActivity().onRecovery((Activity) _context);
                 break;
         }
 
         _dialog.dismiss();
     }
 
-    private void onCancelButtonClick(){
+    private void onCancelButtonClick() {
         _dialog.dismiss();
     }
 }

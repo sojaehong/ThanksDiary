@@ -70,4 +70,6 @@
     <string name="premium_free_btn">3일 무료</string>
     <string name="backup_btn">백업</string>
     <string name="recovery_btn">복구</string>
+    <string name="backup_q">백업을 하시겠습니까?</string>
+    <string name="recovery_q">복구를 하시겠습니까?</string>
 </resources>
