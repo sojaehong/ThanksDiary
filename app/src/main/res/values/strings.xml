@@ -73,4 +73,8 @@
     <string name="recovery_btn">recovery</string>
     <string name="backup_q">Do you want to backup?</string>
     <string name="recovery_q">Do you want to recover?</string>
+    <string name="ad_application_id">ca-app-pub-5743192063444801~8075645035</string>
+    <string name="banner_ad_unit_id_main">ca-app-pub-5743192063444801/1127093300</string>
+    <string name="banner_ad_unit_id_detail">ca-app-pub-5743192063444801/9743949929</string>
+    <string name="reward_ad_unit_id_3day_free">ca-app-pub-5743192063444801/3453873742</string>
 </resources>

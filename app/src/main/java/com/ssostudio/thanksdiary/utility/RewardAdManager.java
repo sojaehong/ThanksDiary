@@ -19,7 +19,7 @@ public class RewardAdManager {
     final static String debug = "RewardedTest";
 
     public static RewardedAd setRewardedAd(Activity activity) {
-        rewardedAd = new RewardedAd(activity, activity.getString(R.string.reward_ad_unit_id_test));
+        rewardedAd = new RewardedAd(activity, activity.getString(R.string.reward_ad_unit_id_3day_free));
 
         RewardedAdLoadCallback rewardedAdLoadCallback = new RewardedAdLoadCallback() {
 

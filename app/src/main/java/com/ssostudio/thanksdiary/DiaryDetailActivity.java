@@ -18,7 +18,6 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.button.MaterialButton;
@@ -26,8 +25,6 @@ import com.ssostudio.thanksdiary.dialog.TextDialog;
 import com.ssostudio.thanksdiary.diary.DiaryDBManager;
 import com.ssostudio.thanksdiary.model.DiaryModel;
 import com.ssostudio.thanksdiary.utility.DateManager;
-
-import java.util.Arrays;
 
 public class DiaryDetailActivity extends AppCompatActivity implements View.OnClickListener {
     private DiaryModel _diaryModel;
@@ -106,7 +103,7 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
         backBtn.setOnClickListener(this);
     }
 
-    public void updateDiaryDiteil(DiaryModel diaryModel){
+    public void updateDiaryDetail(DiaryModel diaryModel){
         if (_diaryModel == null)
             return;
 
@@ -180,13 +177,13 @@ public class DiaryDetailActivity extends AppCompatActivity implements View.OnCli
         adContainerView = findViewById(R.id.adFrame);
 
         mAdView = new AdView(this);
-        mAdView.setAdUnitId(getString(R.string.banner_ad_unit_id_test));
+        mAdView.setAdUnitId(getString(R.string.banner_ad_unit_id_detail));
         adContainerView.addView(mAdView);
 
         // Ad Test Device setting
-        MobileAds.setRequestConfiguration(
-                new RequestConfiguration.Builder().setTestDeviceIds(Arrays.asList("BDEFD70AD95EF10E88425F412EEC574E"))
-                        .build());
+//        MobileAds.setRequestConfiguration(
+//                new RequestConfiguration.Builder().setTestDeviceIds(Arrays.asList("BDEFD70AD95EF10E88425F412EEC574E"))
+//                        .build());
         // 앱 등록시 제거 필요
 
         AdRequest adRequest = new AdRequest.Builder().build();

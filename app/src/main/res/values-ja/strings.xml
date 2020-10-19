@@ -72,4 +72,8 @@
     <string name="work">仕事</string>
     <string name="write">作成</string>
     <string name="yesterday">昨日</string>
+    <string name="ad_application_id">ca-app-pub-5743192063444801~8075645035</string>
+    <string name="banner_ad_unit_id_main">ca-app-pub-5743192063444801/1127093300</string>
+    <string name="banner_ad_unit_id_detail">ca-app-pub-5743192063444801/9743949929</string>
+    <string name="reward_ad_unit_id_3day_free">ca-app-pub-5743192063444801/3453873742</string>
 </resources>

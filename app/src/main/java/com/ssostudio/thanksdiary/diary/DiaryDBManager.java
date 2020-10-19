@@ -6,7 +6,6 @@ import android.widget.Toast;
 import com.ssostudio.thanksdiary.DiaryDetailActivity;
 import com.ssostudio.thanksdiary.R;
 import com.ssostudio.thanksdiary.dbhelper.DBHelperManager;
-import com.ssostudio.thanksdiary.fragment.DiaryCalendarFragment;
 import com.ssostudio.thanksdiary.fragment.DiaryListFragment;
 import com.ssostudio.thanksdiary.model.DiaryListModel;
 import com.ssostudio.thanksdiary.model.DiaryModel;
@@ -69,7 +68,7 @@ public class DiaryDBManager {
             diaryModelsRefresh();
             new DiaryManager().diaryRefresh();
             new DiaryListFragment().refreshList();
-            ((DiaryDetailActivity) DiaryDetailActivity._activity).updateDiaryDiteil(diaryModel);
+            ((DiaryDetailActivity) DiaryDetailActivity._activity).updateDiaryDetail(diaryModel);
             Toast.makeText(_context, R.string.update_completed, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Toast.makeText(_context, "update error", Toast.LENGTH_SHORT).show();
